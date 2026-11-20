@@ -27,8 +27,8 @@ h3{font-size:1.35rem;font-weight:700}
 .sec-head h2{margin-bottom:12px}
 header.site{position:sticky;top:0;z-index:50;background:rgba(10,10,10,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
 .bar{display:flex;align-items:center;justify-content:space-between;gap:20px;height:72px}
-.logo{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:700;font-size:1.5rem}
-.logo .mark{width:30px;height:30px;border-radius:8px;background:var(--lime);color:#000;display:grid;place-items:center;font-weight:800;font-size:1.2rem}
+.logo{display:flex;align-items:center;text-decoration:none;flex:0 0 auto}.logo img{width:140px;height:auto}
+
 nav.main ul{display:flex;gap:26px;list-style:none;padding:0}
 nav.main a{text-decoration:none;font-size:.95rem;font-weight:500;padding:8px 0;border-bottom:2px solid transparent}
 nav.main a:hover,nav.main a[aria-current=page]{color:var(--lime);border-color:var(--lime)}
@@ -137,9 +137,9 @@ details p{padding:0 24px 22px;color:var(--muted)}
 footer.site{border-top:1px solid var(--line);padding:64px 0 32px;background:var(--bg)}
 .fgrid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px}
 footer h4{color:var(--lime);font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:16px}
-footer ul{list-style:none;padding:0;display:grid;gap:10px}
+footer ul{list-style:none;padding:0;display:grid;gap:10px}.social-icons{display:flex;align-items:center;gap:14px;margin-top:4px}.social-icon{display:inline-flex;width:26px;height:26px;align-items:center;justify-content:center}.social-icon svg{width:22px;height:22px}.social-icon:hover{color:var(--lime)}
 footer a{text-decoration:none;color:#fff}footer a:hover{color:var(--lime)}
-.copy{margin-top:48px;padding-top:24px;border-top:1px solid var(--line);color:var(--muted);font-size:.85rem}
+.copy{margin-top:48px;padding-top:24px;border-top:1px solid var(--line);color:var(--muted);font-size:.85rem;display:flex;align-items:center;justify-content:center;text-align:center;gap:6px;flex-wrap:wrap}.footer-credit{display:inline-flex;align-items:center;gap:4px}.footer-credit a{display:inline-flex;align-items:center}.footer-credit img{width:24px;height:auto}
 .sticky-bar{display:none}
 .mapph{aspect-ratio:16/10}
 @media (max-width:1023px){
