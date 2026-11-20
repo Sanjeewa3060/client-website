@@ -21,23 +21,23 @@
 <a class="logo" href="index.html" aria-label="Grey Labs home"><span class="mark">g</span>labs</a>
 <nav class="main" id="nav" aria-label="Main"><ul><li><a href="index.html">Home</a></li><li><a href="3d-printing.html">3D Printing</a></li><li><a href="uv-printing.html">UV Printing</a></li><li><a href="custom-products.html">Custom Products</a></li><li><a href="prototyping.html">Prototyping</a></li><li><a href="portfolio.html">Portfolio</a></li><li><a href="about.html">About</a></li><li><a href="contact.html">Contact</a></li></ul></nav>
 <a class="btn btn-primary btn-sm" href="get-a-quote.html">Get a Quote</a>
-<button class="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="nav"><span></span><span></span><span></span></button>
+<button type="button" class="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="nav"><span></span><span></span><span></span></button>
 </div></header>
 <main id="main">
-<section class="page-hero"><div class="wrap"><p class="eyebrow">Get a quote</p><h1>Tell us what you need.</h1><p class="lead" style="margin-top:18px">Share your file and specifications and we will reply with a quote.</p></div></section>
+<section class="page-hero"><div class="wrap"><p class="eyebrow">Get a quote</p><h1>Tell us what you need.</h1><p class="lead mt">Share your file and specifications and we will reply with a quote.</p></div></section>
 <section><div class="wrap formgrid"><div class="formcard">
 <form id="quote-form" name="quote" method="POST" data-netlify="true" netlify-honeypot="bot-field" enctype="multipart/form-data" novalidate>
-<input type="hidden" name="form-name" value="quote"><p class="hp"><label>Leave empty <input name="bot-field"></label></p>
+<input type="hidden" name="form-name" value="quote"><p class="hp"><label>Leave empty <input type="text" name="bot-field"></label></p>
 <div class="progress" hidden><span class="on"></span><span></span><span></span><span></span></div>
 <fieldset data-step="1"><legend>1  Service</legend><div class="opts"><label class="opt"><input type="radio" name="service" value="3d" checked required><span>3D Printing</span></label><label class="opt"><input type="radio" name="service" value="uv"  required><span>UV Printing</span></label><label class="opt"><input type="radio" name="service" value="custom"  required><span>Custom Product / Prototype</span></label></div></fieldset>
 <fieldset data-step="2"><legend>2  Details</legend>
-<div class="row"><label class="f">Material<select name="material"><option value="">Not sure, recommend one</option><option>PLA</option><option>PETG</option><option>ABS / ASA</option><option>TPU</option><option>Resin</option><option>Nylon</option><option>UV print surface</option></select></label><label class="f">Colour<input name="colour" placeholder="e.g. Black"></label></div>
+<div class="row"><label class="f">Material<select name="material"><option value="">Not sure, recommend one</option><option>PLA</option><option>PETG</option><option>ABS / ASA</option><option>TPU</option><option>Resin</option><option>Nylon</option><option>UV print surface</option></select></label><label class="f">Colour<input type="text" name="colour" placeholder="e.g. Black"></label></div>
 <div class="row"><label class="f">Quantity<input type="number" name="quantity" min="1" value="1" required></label><label class="f">Needed by<input type="date" name="deadline"></label></div>
 <label class="f">Notes<textarea name="notes" placeholder="Size, tolerance, finish or anything else we should know"></textarea></label></fieldset>
 <fieldset data-step="3"><legend>3  Upload your file</legend>
-<div class="drop"><div class="up" aria-hidden="true">↑</div><strong>Drag and drop, or tap to browse</strong><p class="muted" style="font-size:.9rem;margin-top:6px">STL, STEP, OBJ, PDF, PNG, JPG, AI · up to <span data-maxmb>25</span> MB each</p><input id="files" type="file" name="files" multiple accept=".stl,.step,.stp,.obj,.pdf,.png,.jpg,.jpeg,.ai" aria-label="Upload files"></div><ul class="files" id="file-list"></ul></fieldset>
+<div class="drop"><div class="up" aria-hidden="true">↑</div><strong>Drag and drop, or tap to browse</strong><p class="muted small mt6">STL, STEP, OBJ, PDF, PNG, JPG, AI · up to <span data-maxmb>25</span> MB each</p><input id="files" type="file" name="files" multiple accept=".stl,.step,.stp,.obj,.pdf,.png,.jpg,.jpeg,.ai" aria-label="Upload files"></div><ul class="files" id="file-list"></ul></fieldset>
 <fieldset data-step="4"><legend>4  Contact details</legend>
-<div class="row"><label class="f">Full name<input name="name" required autocomplete="name"></label><label class="f">Phone / WhatsApp<input type="tel" name="phone" required autocomplete="tel" placeholder="+94"></label></div>
+<div class="row"><label class="f">Full name<input type="text" name="name" required autocomplete="name"></label><label class="f">Phone / WhatsApp<input type="tel" name="phone" required autocomplete="tel" placeholder="+94"></label></div>
 <label class="f">Email<input type="email" name="email" required autocomplete="email" placeholder="you@example.com"></label>
 <label class="check"><input type="checkbox" name="consent" required> I agree that my files and details are used only to prepare and fulfil this quote.</label></fieldset>
 <div class="wiz-btns"><button type="button" class="btn btn-ghost" id="q-back" hidden>Back</button><button type="button" class="btn btn-primary" id="q-next" hidden>Next</button><button type="submit" class="btn btn-primary" id="q-submit">Submit quote request</button></div>
@@ -47,7 +47,7 @@
 </main>
 <footer class="site"><div class="wrap">
 <div class="fgrid">
-<div><a class="logo" href="index.html"><span class="mark">g</span>labs</a><p class="muted" style="margin-top:16px">Tools that turn concepts into reality.</p></div>
+<div><a class="logo" href="index.html"><span class="mark">g</span>labs</a><p class="muted mt16">Tools that turn concepts into reality.</p></div>
 <div><h4>Services</h4><ul><li><a href="3d-printing.html">3D Printing</a></li><li><a href="uv-printing.html">UV Printing</a></li><li><a href="custom-products.html">Custom Products</a></li><li><a href="prototyping.html">Prototyping</a></li></ul></div>
 <div><h4>Company</h4><ul><li><a href="portfolio.html">Portfolio</a></li><li><a href="about.html">About</a></li><li><a href="faq.html">FAQ</a></li><li><a href="track-order.html">Track Order</a></li></ul></div>
 <div><h4>Contact</h4><ul><li><a href="#" data-wa>WhatsApp</a></li><li><a href="#" data-email>Email</a></li><li><a href="#" data-phone>Phone</a></li><li><a href="contact.html">Contact page</a></li></ul></div>
