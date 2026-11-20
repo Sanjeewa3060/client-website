@@ -4,12 +4,37 @@ const CONFIG = {
   email: "hello@example.com",       // public contact email
   phone: "+94 00 000 0000",         // public phone number
   maxFileMB: 25,                    // upload size limit per file
-  allowed: ["stl","step","stp","obj","pdf","png","jpg","jpeg","ai"]
+  allowed: ["stl","step","stp","obj","pdf","png","jpg","jpeg","ai"],
+  formEndpoint: ""                  // optional POST endpoint (Formspree, Getform, own API). Empty = send by WhatsApp
 };
 
 document.addEventListener("DOMContentLoaded", () => {
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+
+  /* form delivery: POST to CONFIG.formEndpoint, or hand off to WhatsApp when unset */
+  const waLink = text => "https://wa.me/" + CONFIG.whatsapp + "?text=" + encodeURIComponent(text);
+
+  const summary = (form, title) => {
+    const lines = [title];
+    new FormData(form).forEach((v, k) => {
+      if (k === "bot-field" || k === "form-name" || typeof v !== "string" || !v) return;
+      lines.push(k.charAt(0).toUpperCase() + k.slice(1) + ": " + v);
+    });
+    const files = $("#files") ? [...$("#files").files].map(f => f.name) : [];
+    if (files.length) lines.push("Files: " + files.join(", "));
+    return lines.join("\n");
+  };
+
+  const deliver = async (form, title) => {
+    if (!CONFIG.formEndpoint) {
+      window.open(waLink(summary(form, title)), "_blank", "noopener");
+      return "whatsapp";
+    }
+    const res = await fetch(CONFIG.formEndpoint, { method: "POST", body: new FormData(form), headers: { Accept: "application/json" } });
+    if (!res.ok) throw new Error(res.status);
+    return "sent";
+  };
 
   /* contact details from CONFIG */
   $$("[data-wa]").forEach(a => {
@@ -88,10 +113,13 @@ document.addEventListener("DOMContentLoaded", () => {
       render();
       submit.disabled = true; submit.textContent = "Sending...";
       try {
-        const res = await fetch("/", { method: "POST", body: new FormData(form) });
-        if (!res.ok) throw new Error(res.status);
-        form.reset(); list.innerHTML = ""; cur = 0; render();
-        show("Thank you. Your quote request has been received. We have sent a confirmation to your email and will reply with a quote soon.", true);
+        const result = await deliver(form, "Quote request from the Grey Labs website");
+        if (result === "sent") {
+          form.reset(); list.innerHTML = ""; cur = 0; render();
+          show("Thank you. Your quote request has been received. We will reply with a quote soon.", true);
+        } else {
+          show("Your request is ready in WhatsApp. Send the message there and attach your files to complete it.", true);
+        }
       } catch (err) {
         show("Sorry, we could not send your request. Please try again or send it on WhatsApp.", false);
       }
@@ -128,9 +156,10 @@ document.addEventListener("DOMContentLoaded", () => {
     e.preventDefault();
     const m = $("#c-msg");
     try {
-      const r = await fetch("/", { method: "POST", body: new FormData(cf) });
-      if (!r.ok) throw 0;
-      cf.reset(); m.hidden = false; m.className = "msg ok"; m.textContent = "Thank you. We will get back to you soon.";
+      const result = await deliver(cf, "Message from the Grey Labs website");
+      m.hidden = false; m.className = "msg ok";
+      if (result === "sent") { cf.reset(); m.textContent = "Thank you. We will get back to you soon."; }
+      else m.textContent = "Your message is ready in WhatsApp. Send it there to complete it.";
     } catch (x) { m.hidden = false; m.className = "msg err"; m.textContent = "Sorry, that did not send. Please try WhatsApp or email."; }
   });
 });

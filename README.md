@@ -18,14 +18,14 @@ Plain HTML, CSS and JavaScript. No build step, no dependencies.
 - Page copy on materials, turnaround, size limits: confirm with the client
 
 ## Forms (important)
-The Get a Quote and Contact forms are written for Netlify Forms (data-netlify="true").
-- Deploy on Netlify (drag and drop this folder) and enable email notifications under Site > Forms.
-- On other hosts (cPanel, GitHub Pages, Vercel) forms will NOT send. Point the form to Formspree/Getform or your own backend and update the fetch() in js/main.js.
-- Customer confirmation emails need a backend or an email service; Netlify only notifies the team.
+Both forms deliver without a build step:
+- Set `formEndpoint` in `js/main.js` (CONFIG) to a POST endpoint such as Formspree, Getform or your own API.
+- Leave `formEndpoint` empty and the form opens WhatsApp with all details prefilled. Files can be attached in the chat.
+- Customer confirmation emails need a backend or an email service.
 
 ## Track Order
 Demo only. Reference GL-1042 shows a sample timeline. Replace the DEMO lookup in js/main.js with a real API/database before launch.
 
 ## Deploy
-- Netlify: drag the folder onto app.netlify.com/drop
-- Any static host: upload the folder contents to the web root
+- Vercel: import the GitHub repo, framework preset "Other", no build command. `vercel.json` adds security and cache headers.
+- Any static host: upload the repository files to the web root.
